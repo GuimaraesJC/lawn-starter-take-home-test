@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <title>React SPA</title>
     @viteReactRefresh
-    @vite(['resources/js/app.jsx'])
+    @vite(['resources/js/App.jsx'])
 </head>
 <body>
     <div id="root"></div>
