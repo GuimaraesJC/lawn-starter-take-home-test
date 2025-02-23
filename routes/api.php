@@ -10,6 +10,6 @@ Route::middleware('api')->group(function () {
     Route::get('/people/{id}', [StarWarsController::class, 'getPerson']);
 
     // Films
-    Route::get('/films', [StarWarsController::class, 'getMovies']);
+    Route::get('/films', [StarWarsController::class, 'getFilms']);
     Route::get('/films/{id}', [StarWarsController::class, 'getFilm']);
 });
