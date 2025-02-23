@@ -26,4 +26,24 @@ class StarWarsController extends Controller
 
         return response()->json(['error' => 'Unable to fetch data'], 500);
     }
+
+    public function getMovies (Request $request)
+    {
+        $title = $request->query('title');
+
+        if (!$title) {
+            return response()->json(['error' => 'Title parameter is required'], 400);
+        }
+
+        $response = Http::get('https://swapi.dev/api/films/', [
+            'search' => $title
+        ]);
+
+        if ($response->successful()) {
+            $data = $response->json();
+            return response()->json($data['results'] ?? []);
+        }
+
+        return response()->json(['error' => 'Unable to fetch data'], 500);
+    }
 }
