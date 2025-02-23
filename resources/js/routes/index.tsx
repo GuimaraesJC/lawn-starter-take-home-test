@@ -2,7 +2,7 @@ import { createBrowserRouter } from 'react-router'
 
 import Layout from '../components/Layout'
 
-import Main from '../pages/Main'
+import MainPage from '../pages/MainPage'
 import PersonPage from '../pages/PersonPage'
 import FilmPage from '../pages/FilmPage'
 
@@ -13,7 +13,7 @@ export const router = createBrowserRouter([
     children: [
       {
         index: true,
-        element: <Main />
+        element: <MainPage />
       },
       {
         path: 'person/:id',

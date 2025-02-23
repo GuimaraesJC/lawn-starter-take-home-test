@@ -1,7 +1,7 @@
 import Results from "../../components/Results"
 import Search from "../../components/Search"
 
-const Main = () => {
+const MainPage = () => {
   return (
     <>
       <Search />
@@ -10,4 +10,4 @@ const Main = () => {
   )
 }
 
-export default Main
+export default MainPage
