@@ -15,10 +15,14 @@ export default {
               sans: ['Montserrat', ...defaultTheme.fontFamily.sans],
             },
             colors: {
-              'gainsboro' : '#dadada'
+              'gainsboro': '#dadada',
+              'warm-grey': '#848484bf',
+              'green-teal': '#0ab463'
             },
             boxShadow: ({ theme }) => ({
               'header': `0 2px 0 0 ${theme('colors.gainsboro')}`,
+              'warm-grey': `0 1px 2px 0 ${theme('colors.warm-grey')}`,
+              'inset-warm-grey': `inset 0 1px 3px 0 ${theme('colors.warm-grey')}`,
             }),
         },
     },
