@@ -1,6 +1,8 @@
+import Details from "../../components/Details"
+
 const PersonPage = () => {
   return (
-    <h1>Person Page</h1>
+    <Details />
   )
 }
 
