@@ -17,7 +17,8 @@ export default {
             colors: {
               'gainsboro': '#dadada',
               'warm-grey': '#848484bf',
-              'green-teal': '#0ab463'
+              'green-teal': '#0ab463',
+              'pinkish-grey': '#c4c4c4',
             },
             boxShadow: ({ theme }) => ({
               'header': `0 2px 0 0 ${theme('colors.gainsboro')}`,

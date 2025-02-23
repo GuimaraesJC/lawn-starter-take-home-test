@@ -1,6 +1,6 @@
 const Search = () => {
   return (
-    <div className="flex flex-col bg-white border-gainsboro w-[25.625rem] p-[1.875rem] shadow-warm-grey">
+    <div className="flex flex-col bg-white border-gainsboro w-[25.625rem] h-max p-[1.875rem] shadow-warm-grey rounded">
       <span className="font-semibold mb-5">What are you searching for?</span>
 
       <div className="flex gap-7 mb-5">
