@@ -27,7 +27,18 @@ class StarWarsController extends Controller
         return response()->json(['error' => 'Unable to fetch data'], 500);
     }
 
-    public function getMovies (Request $request)
+    public function getPerson($id)
+    {
+        $response = Http::get("https://swapi.dev/api/people/{$id}/");
+
+        if ($response->successful()) {
+            return response()->json($response->json());
+        }
+
+        return response()->json(['error' => 'Unable to fetch data'], 500);
+    }
+
+    public function getFilms (Request $request)
     {
         $title = $request->query('title');
 
@@ -42,6 +53,17 @@ class StarWarsController extends Controller
         if ($response->successful()) {
             $data = $response->json();
             return response()->json($data['results'] ?? []);
+        }
+
+        return response()->json(['error' => 'Unable to fetch data'], 500);
+    }
+
+    public function getFilm($id)
+    {
+        $response = Http::get("https://swapi.dev/api/films/{$id}/");
+
+        if ($response->successful()) {
+            return response()->json($response->json());
         }
 
         return response()->json(['error' => 'Unable to fetch data'], 500);
