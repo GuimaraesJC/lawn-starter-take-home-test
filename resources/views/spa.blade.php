@@ -7,6 +7,6 @@
     @vite(['resources/js/App.tsx'])
 </head>
 <body>
-    <div id="root"></div>
+    <div id="root" class="flex flex-col h-screen bg-[#ededed]"></div>
 </body>
 </html>
