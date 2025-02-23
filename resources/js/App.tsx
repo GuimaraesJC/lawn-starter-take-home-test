@@ -1,19 +1,13 @@
-import React from 'react';
 import ReactDOM from 'react-dom/client';
+import { RouterProvider } from 'react-router'
 import '../css/app.css';
 import './bootstrap';
 
-
-function App() {
-    return (
-        <div>
-            <h1>Welcome to the SPA</h1>
-            <p>This is a React Single Page Application built with Vite and Laravel.</p>
-        </div>
-    );
-}
+import { router } from './routes';
 
 const rootElement = document.getElementById('root');
 if (rootElement) {
-    ReactDOM.createRoot(rootElement).render(<App />);
+    ReactDOM.createRoot(rootElement).render(
+      <RouterProvider router={router} />
+  );
 }
