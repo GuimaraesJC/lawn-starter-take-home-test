@@ -1,5 +1,7 @@
 export type PeopleResponse = PersonProps[]
 
+export type PersonResponse = PersonProps
+
 type PersonProps = {
   name: string
   height: string
