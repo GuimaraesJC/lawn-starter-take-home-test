@@ -4,12 +4,12 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\StarWarsController;
 
-Route::middleware('api')->group(function () {
-    // People
-    Route::get('/people', [StarWarsController::class, 'getPeople']);
-    Route::get('/people/{id}', [StarWarsController::class, 'getPerson']);
+Route::prefix('people')->group(function () {
+  Route::get('/', [StarWarsController::class, 'getPeople'])->name('people.index');
+  Route::get('/{id}', [StarWarsController::class, 'getPerson'])->name('people.show');
+});
 
-    // Films
-    Route::get('/films', [StarWarsController::class, 'getFilms']);
-    Route::get('/films/{id}', [StarWarsController::class, 'getFilm']);
+Route::prefix('films')->group(function () {
+  Route::get('/', [StarWarsController::class, 'getFilms'])->name('films.index');
+  Route::get('/{id}', [StarWarsController::class, 'getFilm'])->name('films.show');
 });
