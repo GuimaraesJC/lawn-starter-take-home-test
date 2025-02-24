@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react'
 import { Link, useLocation } from 'react-router'
 
+import PersonDetails from '../PersonDetails'
+
 import { useStarWarsStore } from "../../store/store"
 import { usePerson } from '../../services/people/usePeople'
 import { useFilm } from '../../services/films/useFilms'
@@ -44,12 +46,43 @@ const Details = () => {
           <span className="block text-base font-bold border-b border-b-pinkish-grey w-full pb-[0.625rem]">
             {detailsType === 'person' ? ' Details' : 'Opening Crawl'}
           </span>
+
+          <div>
+            {person && detailsType === 'person' && (
+              <PersonDetails person={person} />
+            )}
+          </div>
+
+          <div className="mt-1">
+            {film && detailsType === 'film' && (
+              <p className="whitespace-pre-line">{film.opening_crawl}</p>
+            )}
+          </div>
         </div>
 
         <div>
           <span className="block text-base font-bold border-b border-b-pinkish-grey w-full pb-[0.625rem]">
             {detailsType === 'person' ? ' Movies' : 'Characters'}
           </span>
+          <div className="flex flex-wrap">
+            {person ? person.films.map((film, index) => (
+              <>
+                <Link key={film} to="#" className="underline text-blue-400 cursor-pointer">
+                  {film}
+                </Link>
+                {index < person.films.length - 1 && <span>, </span>}
+              </>
+            )) : null}
+
+            {film ? film.characters.map((character, index) => (
+              <>
+                <Link key={character} to="#" className="underline text-blue-400 cursor-pointer">
+                  {character}
+                </Link>
+                {index < film.characters.length - 1 && <span>, </span>}
+              </>
+            )) : null}
+          </div>
         </div>
       </div>
 
