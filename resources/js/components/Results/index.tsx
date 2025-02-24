@@ -10,13 +10,21 @@ const Results = () => {
         <span className="text-[1.125rem] font-bold pb-[0.625rem] border-b border-b-pinkish-grey">Results</span>
 
         <div>
-          {peopleResults?.length && peopleResults?.map((person) => (
-            <ResultItem key={person.name} />
-          ))}
+          {peopleResults?.length && peopleResults?.map((person) => {
+            const personId = person.url.split('/').filter(Boolean).pop() || ''
 
-          {filmsResults?.length && filmsResults?.map((film) => (
-            <ResultItem key={film.title} />
-          ))}
+            return (
+              <ResultItem key={personId} label={person.name} id={personId} type='person' />
+            )
+          })}
+
+          {filmsResults?.length && filmsResults?.map((film) => {
+            const filmId = film.url.split('/').filter(Boolean).pop() || ''
+
+            return (
+              <ResultItem key={film.title} label={film.title} id={filmId} type='film' />
+            )
+          })}
         </div>
 
         {(!peopleResults?.length && !filmsResults?.length && !isSearchingPeople && !isSearchingFilms) && (

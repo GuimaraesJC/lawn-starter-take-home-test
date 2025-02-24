@@ -29,8 +29,8 @@ const Search = () => {
   }
 
   const handleOnSearch = async () => {
-    setFilmsResults(null)
     setPeopleResults(null)
+    setFilmsResults(null)
 
     if (searchType === 'people') {
       setIsSearchingPeople(true)

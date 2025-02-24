@@ -1,6 +1,8 @@
+import Details from "../../components/Details"
+
 const FilmPage = () => {
   return (
-    <h1>Film Page</h1>
+    <Details />
   )
 }
 
