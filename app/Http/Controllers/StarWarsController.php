@@ -3,69 +3,62 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Http;
+use App\Services\StarWarsService;
 
 class StarWarsController extends Controller
 {
-    public function getPeople(Request $request)
-    {
-        $name = $request->query('name');
+  protected StarWarsService $starWarsService;
 
-        if (!$name) {
-            return response()->json(['error' => 'Name parameter is required'], 400);
-        }
+  public function __construct(StarWarsService $starWarsService)
+  {
+    $this->starWarsService = $starWarsService;
+  }
 
-        $response = Http::get('https://swapi.dev/api/people/', [
-            'search' => $name
-        ]);
+  public function getPeople(Request $request)
+  {
+    $name = $request->query('name');
 
-        if ($response->successful()) {
-            $data = $response->json();
-            return response()->json($data['results'] ?? []);
-        }
-
-        return response()->json(['error' => 'Unable to fetch data'], 500);
+    if (!$name) {
+      return response()->json(['error' => 'Name parameter is required'], 400);
     }
 
-    public function getPerson($id)
-    {
-        $response = Http::get("https://swapi.dev/api/people/{$id}/");
+    $data = $this->starWarsService->fetchPeople($name);
 
-        if ($response->successful()) {
-            return response()->json($response->json());
-        }
+    return $data
+      ? response()->json($data['results'] ?? [])
+      : response()->json(['error' => 'Unable to fetch data'], 500);
+  }
 
-        return response()->json(['error' => 'Unable to fetch data'], 500);
+  public function getPerson(int $id)
+  {
+    $data = $this->starWarsService->fetchPerson($id);
+
+    return $data
+      ? response()->json($data)
+      : response()->json(['error' => 'Unable to fetch data'], 500);
+  }
+
+  public function getFilms(Request $request)
+  {
+    $title = $request->query('title');
+
+    if (!$title) {
+      return response()->json(['error' => 'Title parameter is required'], 400);
     }
 
-    public function getFilms (Request $request)
-    {
-        $title = $request->query('title');
+    $data = $this->starWarsService->fetchFilms($title);
 
-        if (!$title) {
-            return response()->json(['error' => 'Title parameter is required'], 400);
-        }
+    return $data
+      ? response()->json($data['results'] ?? [])
+      : response()->json(['error' => 'Unable to fetch data'], 500);
+  }
 
-        $response = Http::get('https://swapi.dev/api/films/', [
-            'search' => $title
-        ]);
+  public function getFilm(int $id)
+  {
+    $data = $this->starWarsService->fetchFilm($id);
 
-        if ($response->successful()) {
-            $data = $response->json();
-            return response()->json($data['results'] ?? []);
-        }
-
-        return response()->json(['error' => 'Unable to fetch data'], 500);
-    }
-
-    public function getFilm($id)
-    {
-        $response = Http::get("https://swapi.dev/api/films/{$id}/");
-
-        if ($response->successful()) {
-            return response()->json($response->json());
-        }
-
-        return response()->json(['error' => 'Unable to fetch data'], 500);
-    }
+    return $data
+      ? response()->json($data)
+      : response()->json(['error' => 'Unable to fetch data'], 500);
+  }
 }
