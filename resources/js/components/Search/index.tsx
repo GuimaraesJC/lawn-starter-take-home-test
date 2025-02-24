@@ -6,7 +6,16 @@ import { useFilms } from "../../services/films/useFilms"
 const Search = () => {
   const [searchType, setSearchType] = useState<'people' | 'films'>('people')
 
-  const { searchTermPeople, searchTermFilms, setSearchTermPeople, setSearchTermFilms, setPeopleResults, setFilmsResults } = useStarWarsStore()
+  const {
+    searchTermPeople,
+    searchTermFilms,
+    setSearchTermPeople,
+    setSearchTermFilms,
+    setPeopleResults,
+    setFilmsResults,
+    setIsSearchingPeople,
+    setIsSearchingFilms
+  } = useStarWarsStore()
 
   const { data: peopleResults, isLoading: isSearchingPeople, refetch: refetchPeople } = usePeople()
   const { data: filmsResults, isLoading: isSearchingFilms, refetch: refetchFilms } = useFilms()
@@ -20,14 +29,22 @@ const Search = () => {
   }
 
   const handleOnSearch = async () => {
+    setFilmsResults(null)
+    setPeopleResults(null)
+
     if (searchType === 'people') {
-      await refetchPeople()
-      setPeopleResults(peopleResults || null)
+      setIsSearchingPeople(true)
+      const { data } = await refetchPeople()
+      setPeopleResults(data || null)
+      setIsSearchingPeople(false)
     } else {
-      await refetchFilms()
-      setFilmsResults(filmsResults || null)
+      setIsSearchingFilms(true)
+      const { data } = await refetchFilms()
+      setFilmsResults(data || null)
+      setIsSearchingFilms(false)
     }
   }
+
 
   const handleDisableSearchButton = () => {
     if (searchType === 'people' && !searchTermPeople) {

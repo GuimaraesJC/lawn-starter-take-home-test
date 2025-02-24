@@ -18,6 +18,8 @@ interface StarWarsStore {
   setFilmsResults: (results: FilmsResponse | null) => void;
   setSelectedPersonId: (id: string | null) => void;
   setSelectedFilmId: (id: string | null) => void;
+  setIsSearchingPeople: (isSearching: boolean) => void;
+  setIsSearchingFilms: (isSearching: boolean) => void;
 }
 
 export const useStarWarsStore = create<StarWarsStore>((set) => ({
@@ -36,4 +38,6 @@ export const useStarWarsStore = create<StarWarsStore>((set) => ({
   setFilmsResults: (results) => set({ filmsResults: results }),
   setSelectedPersonId: (id) => set({ selectedPersonId: id }),
   setSelectedFilmId: (id) => set({ selectedFilmId: id }),
+  setIsSearchingPeople: (isSearching) => set({ isSearchingPeople: isSearching }),
+  setIsSearchingFilms: (isSearching) => set({ isSearchingFilms: isSearching }),
 }));
