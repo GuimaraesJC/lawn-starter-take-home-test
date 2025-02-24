@@ -4,17 +4,23 @@ import { fetchFilms, fetchFilm } from ".";
 import { FilmsResponse, FilmResponse } from "./types";
 import { AxiosError } from "axios";
 
-export const useFilms = (title: string) => {
+import { useStarWarsStore } from "../../store/store";
+
+export const useFilms = () => {
+  const { searchTermFilms: title, isSearchingFilms } = useStarWarsStore();
+
   return useQuery<FilmsResponse, AxiosError>({
     queryFn: () => fetchFilms(title),
     queryKey: ['fetchFilms', title],
-    enabled: !!title,
+    enabled: isSearchingFilms && !!title,
   });
 };
 
-export const useFilm = (id: string) => {
+export const useFilm = () => {
+  const id = useStarWarsStore((state) => state.selectedFilmId);
+
   return useQuery<FilmResponse, AxiosError>({
-    queryFn: () => fetchFilm(id),
+    queryFn: () => fetchFilm(id as string),
     queryKey: ['fetchFilm', id],
     enabled: !!id,
   });
