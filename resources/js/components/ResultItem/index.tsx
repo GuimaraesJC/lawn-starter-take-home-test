@@ -23,13 +23,13 @@ const ResultItem = ({ label, id, type }: IResultItemProps) => {
   }
 
   return (
-    <div className="flex items-center justify-between border-b border-b-pinkish-grey py-[0.625rem]">
+    <div className="flex items-center justify-between border-b border-b-pinkish-grey py-sw-10">
       <span className="font-bold">
         {label}
       </span>
       <Link to={`/${type === 'person' ? 'person' : 'film'}/${id}`}>
         <button
-          className="uppercase h-[2.125rem] text-sm bg-green-teal py-2 px-5 text-white font-semibold rounded-[1.063rem]"
+          className="default-btn h-[2.125rem] text-sm py-2 px-5 rounded-[1.063rem]"
           onClick={handleNavigate}
         >
           See details

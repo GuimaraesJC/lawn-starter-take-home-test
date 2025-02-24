@@ -6,8 +6,8 @@ const Results = () => {
 
   return (
     <>
-      <div className="flex flex-col bg-white border-gainsboro w-full lg:w-[36.375rem] h-auto lg:h-[36.375rem] p-[1.875rem] shadow-warm-grey rounded max-w-[40rem] overflow-auto mb-4 lg:mb-0">
-        <span className="text-[1.125rem] font-bold pb-[0.625rem] border-b border-b-pinkish-grey">Results</span>
+      <div className="flex flex-col bg-white border-gainsboro w-full lg:w-[36.375rem] h-auto lg:h-[36.375rem] p-sw-30 shadow-warm-grey rounded max-w-[40rem] overflow-auto mb-4 lg:mb-0">
+        <span className="text-[1.125rem] font-bold pb-sw-10 border-b border-b-pinkish-grey">Results</span>
 
         <div>
           {peopleResults?.length ? peopleResults?.map((person) => {

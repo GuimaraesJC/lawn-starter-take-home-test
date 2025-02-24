@@ -59,7 +59,7 @@ const Search = () => {
   }
 
   return (
-    <div className="flex flex-col bg-white border-gainsboro w-full lg:w-[25.625rem] h-max p-[1.875rem] shadow-warm-grey rounded max-w-[40rem]">
+    <div className="flex flex-col bg-white border-gainsboro w-full lg:w-[25.625rem] h-max p-sw-30 shadow-warm-grey rounded max-w-[40rem]">
       <span className="font-semibold mb-5">What are you searching for?</span>
 
       <div className="flex gap-7 mb-5">
@@ -68,7 +68,7 @@ const Search = () => {
             id="people"
             type="radio"
             name="category"
-            className="mr-[0.625rem]"
+            className="mr-sw-10"
             onChange={() => {
               setSearchType('people')
               setSearchTermFilms('')
@@ -82,7 +82,7 @@ const Search = () => {
             type="radio"
             name="category"
             id="films"
-            className="mr-[0.625rem]"
+            className="mr-sw-10"
             onChange={() => {
               setSearchType('films')
               setSearchTermPeople('')
@@ -104,7 +104,7 @@ const Search = () => {
 
       <button
         type="button"
-        className="w-full h-[2.125rem] p-2 bg-green-teal text-white font-bold rounded-[1.25rem] flex items-center justify-center disabled:bg-pinkish-grey disabled:cursor-not-allowed uppercase"
+        className="default-btn w-full h-[2.125rem] p-2 rounded-[1.25rem] flex items-center justify-center"
         disabled={handleDisableSearchButton()}
         onClick={handleOnSearch}
       >

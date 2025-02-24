@@ -3,3 +3,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.default-btn {
+  @apply uppercase bg-green-teal text-white font-bold disabled:bg-pinkish-grey disabled:cursor-not-allowed hover:bg-emerald
+}
