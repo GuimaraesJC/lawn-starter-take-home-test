@@ -1,66 +1,131 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# SWAPI Full Stack Application by Jean Guimarães
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+## Description
 
-## About Laravel
+This project is a full-stack web application developed for a job interview coding assignment. It allows users to retrieve information about Star Wars characters and movies from the public SWAPI API. The backend is built with Laravel and serves as a middle layer, exposing endpoints for a React (TypeScript) frontend.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## Setup
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+These instructions are for testing the application locally. Unfortunately, I wasn't able to configure Docker with Sail for this application within the given timeframe. I provide more details about this below.
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+### Prerequisites
 
-## Learning Laravel
+Ensure you have the following installed:
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+- Node.js (Latest LTS version recommended)
+- NPM
+- PHP 8.1+
+- Composer
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+### Steps
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+After cloning the project and navigating to the root folder, run the following commands:
 
-## Laravel Sponsors
+```
+composer install
+```
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+```
+cp .env.example .env
+```
 
-### Premium Partners
+```
+php artisan key:generate
+```
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+```
+php artisan migrate --seed    # if asked for confirmation, answer 'yes'
+```
 
-## Contributing
+```
+cd resources/js
+```
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+```
+npm install
+```
 
-## Code of Conduct
+```
+npm run build
+```
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+```
+cd ../..
+```
 
-## Security Vulnerabilities
+```
+php artisan serve
+```
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+The web application runs in the browser at http://localhost:8000.
 
-## License
+API endpoints are available at http://localhost:8000/api and can be tested using tools like Postman.
+For example, you can fetch all characters whose names contain **"bi"** by making a request to:
+http://localhost:8000/api/people?name=bi.
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+## Stack of Choice
+
+- Laravel - Although I have more experience with Node.js (which was an option for this assignment), I chose Laravel because it is the framework used by the company.
+- React (TypeScript) - Set up with Vite, which comes pre-configured with Laravel.
+- Tailwind - Used for styling.
+- React Query - Handles data fetching and validations.
+- Zustand - Manages global state.
+- Axios - Handles HTTP requests.
+
+## Features
+
+### Available endpoints
+
+You can search for characters using a keyword and view detailed information about a selected character.
+
+Similarly, you can search for movies and access details about a specific movie.
+
+### Responsiviness 
+
+Ensures that all pages are fully responsive, providing an optimal viewing experience across desktop, tablet, and smartphone devices.
+
+### 404 Page (Front-End)
+
+Handles navigation for non-existent pages in the router, displaying a user-friendly error message and offering clear options to navigate back to the homepage.
+
+## What is missing?
+
+Unfortunately, a few requirements were not completed. For example, clicking on a character's name while viewing a movie's details does not navigate to the character's details page. Similarly, when viewing a character's details, it's not possible to navigate to a movie's details from the list of movies they appear in.
+
+I was also unable to implement the metrics requirement outlined in item 3 of the challenge. While I have a general idea of how I would approach it and could discuss it further with the team, my background is primarily in Front-End development, with most of my Back-End experience being in Node.js. Due to the limited timeframe, I couldn't complete this part of the task.
+
+All other requirements, both for the Back-End and Front-End, including UX validations and other specified features, have been completed.
+
+## "Short Answer Questions" from the challenge
+
+**What are you hoping to find in your next position that would make us the right next step in your career?**
+
+A: I'm looking to grow as a Full-Stack developer, and from what I've seen, the company seems to offer the right environment and challenges to help me take that next step. 
+
+---
+
+**What have you learned so far about us that has excited you?**
+
+A: I’m really excited about the collaborative environment and the knowledge-sharing initiatives here. It seems like a great place to improve my Back-End skills while also helping others grow in their Front-End expertise, which would be a win-win for both my personal growth and the success of the company.
+
+---
+
+**Have you worked in an environment where developers own delivering features all the way to production? We have QA (Quality Assurance) and a Product Operations team, however, they exist to provide support to engineers. Are you comfortable going to a place where the quality buck stops with the engineers and you have the ability to deploy and observe your own code in production?**
+
+A: Yes, in my previous role at Inter Digital Bank, I was responsible for writing code and tests, acting as my own QA, and supporting my peers. The QA team was there for edge cases and business rules. I also handled deployments to DEV and STAGING and initiated production deployments, where I monitored logs to ensure everything ran smoothly. In fact, one of my first projects there involved taking charge of both the UX design and the development/deployment process. I’ve had similar experiences in roles at 123 Milhas and UOL as well.
+
+---
+
+**What is the next technology or subject you are hoping to learn about?**
+
+A: I’m focusing on getting better at back-end development, possibly with Laravel, but I’m open to learning other tools too. Down the road, I’d love to keep growing and work towards becoming a specialist or architect.
+
+## Improvements for the Future
+
+Since my main expertise is in Front-End development, I put extra effort into making sure everything runs smoothly. I focused on making the app fully responsive, so it works well on all screen sizes, and ensured that all validations are working perfectly.
+
+One thing that could be improved would be adding tools like ESLint and Prettier. These would help keep the code consistent, more readable, and easier to maintain over time by enforcing coding standards across the project.
+
+On the Back-End side, I made sure to follow a clear separation of concerns. The controller takes care of the logic, while the service layer is responsible for making HTTP requests to the SWAPI API. This makes the code cleaner, easier to maintain, and more modular in the long run.
+
+While Docker would have been a great way to streamline the deployment process and make the application more accessible to other developers, I was unable to fullfil theis requirement within the given timeframe using Sail. Docker would’ve helped streamline deployment, manage dependencies, and ensure the app runs consistently across different systems, but I couldn’t finalize the setup in time.
